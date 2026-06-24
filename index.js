@@ -8,10 +8,10 @@ function render() {
   const $app = document.querySelector("#app");
   $app.innerHTML = 
   `
-  ${NumberForm()},
-  ${NumberBank()},
-  ${SortButtons()},
-  ${Odds()},
+  ${NumberForm()}
+  ${NumberBank()}
+  ${SortButtons()}
+  ${Odds()}
   ${Evens()}
   `;
 }
@@ -37,20 +37,22 @@ function NumberBank() {
 
 
 function Odds() {
-    return `
+  return `
     <section>
-        <h2>Number Bank</h2>
-        <p>${odds.join(", ")}</p>
-    </section>`
+      <h2>Odds</h2>
+      <p>${odds.join(", ")}</p>
+    </section>
+  `;
 }
 
 
 function Evens() {
-    return `
+  return `
     <section>
-        <h2>Number Bank</h2>
-        <p>${evens.join(", ")}</p>
-    </section>`
+      <h2>Evens</h2>
+      <p>${evens.join(", ")}</p>
+    </section>
+  `;
 }
 
 function addNumber(number) {
