@@ -1,41 +1,76 @@
 // this is state
-const state = {
-    allNums: [],
-    odds: [],
-    evens: [],
-};
+let allNums = [];
+const odds = [];
+const evens = [];
 
 // render to HTML
 function render() {
-  document.body.innerHTML = "";
+  const $app = document.querySelector("#app");
+  $app.innerHTML = 
+  `
+  ${NumberForm()},
+  ${NumberBank()},
+  ${SortButtons()},
+  ${Odds()},
+  ${Evens()}
+  `;
+}
 
-  document.body.append(
-    NumberForm(),
-    NumberBank(),
-    SortButtons(),
-    OddsSection(),
-    EvensSection()
-  );
+function NumberForm() {
+    return `
+    <form>
+    <input type="number">
+    <button>Add Number</button>
+    <button>Sort 1</button>
+    <button>Sort All</button>
+    </form>
+    `
+}
+
+function NumberBank() {
+    return `
+    <section>
+        <h2>Number Bank</h2>
+        <p>${allNums.join(", ")}</p>
+    </section>`
+}
+
+
+function Odds() {
+    return `
+    <section>
+        <h2>Number Bank</h2>
+        <p>${odds.join(", ")}</p>
+    </section>`
+}
+
+
+function Evens() {
+    return `
+    <section>
+        <h2>Number Bank</h2>
+        <p>${evens.join(", ")}</p>
+    </section>`
 }
 
 function addNumber(number) {
-  state.allNums.push(number);
+  allNums.push(number);
 }
 
 function sortNumber() {
-  const number = state.allNums.shift();
-
-  if (number === undefined) return;
-
+  const number = allNums[0];
   if (number % 2 === 0) {
-    state.evens.push(number);
+    evens.push(number);
   } else {
-    state.odds.push(number);
+    odds.push(number);
   }
+  allNums = allNums.filter((num, index) => {
+    return index !==0;
+  });
 }
 
 function sortAll() {
-  while (state.allNums.length > 0) {
+  while (allNums.length > 0) {
     sortNumber();
   }
 }
